@@ -1,0 +1,40 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="Client.SecuritiesAllocationView"
+        mc:Ignorable="d"
+        Title="SecuritiesAllocationView" Height="300" Width="800">
+    <Window.DataContext>
+        <local:SecuritiesAllocationViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Margin="5" Content="Export to Excel" Command="{Binding Path=TestCommand}" CommandParameter="{Binding ElementName=securities, Path=SelectedItem}" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=securities, Path=VisibleRowCount }" Value="0" >
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBlock Text="{Binding ElementName=securities, Path=VisibleRowCount }" />
+            <TextBlock Text="{Binding Path=TestProperty }" />
+        </StackPanel>
+        <dxg:GridControl Name="securities" Grid.Row="1" ItemsSource="{Binding Path=Securities}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
+            <dxg:GridControl.View>
+                <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+
+    </Grid>
+</Window>

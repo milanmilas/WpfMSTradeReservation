@@ -4,12 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
+        xmlns:helper="clr-namespace:Client.Helpers"
+        xmlns:converters="clr-namespace:Client.Converters"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="Client.SecuritiesAllocationView"
         mc:Ignorable="d"
-        Title="SecuritiesAllocationView" Height="300" Width="800">
+        Title="SecuritiesAllocationView" Height="300" Width="800" Name="mainWindow">
     <Window.DataContext>
         <local:SecuritiesAllocationViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <helper:CurrentTime x:Key="currentTime" />
+        <converters:ElapsedTimeMultiConverter x:Key="ElapsedTimeMultiConverter" />
+        <converters:InspectorConverter x:Key="inspectorConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -28,10 +35,73 @@
                 </Button.Style>
             </Button>
             <TextBlock Text="{Binding ElementName=securities, Path=VisibleRowCount }" />
-            <TextBlock Text="{Binding Path=TestProperty }" />
+            <!--<TextBlock Background="Azure" Width="200" Text="{Binding Source={StaticResource currentTime}, Path=Now}"/>
+            <TextBlock Background="Azure">
+                <TextBlock.Text>
+                    <Binding Path="Now" Source="{StaticResource currentTime}" />
+                </TextBlock.Text>
+            </TextBlock>-->
         </StackPanel>
         <dxg:GridControl Name="securities" Grid.Row="1" ItemsSource="{Binding Path=Securities}" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
-            <dxg:GridControl.View>
+            <dxg:GridControl.DetailDescriptor>
+                <dxg:ContentDetailDescriptor>
+                    <dxg:ContentDetailDescriptor.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <dxg:GridControl ItemsSource="{Binding Reservations}" MaxHeight="500" Margin="5,5,5,5">
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn FieldName="TraderName" Width="*"/>
+                                        <dxg:GridColumn FieldName="Quantity" Width="*"/>
+                                        <dxg:GridColumn Header="Reservation Time" IsEnabled="False"  ReadOnly="True" Width="*">
+                                            <!--<dxg:GridColumn.DataContext>
+                                                <StaticResourceExtension ResourceKey="currentTime"/>
+                                            </dxg:GridColumn.DataContext>-->
+                                            <dxg:GridColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                            <TextBlock.Text>
+                                                            <MultiBinding Converter="{StaticResource ElapsedTimeMultiConverter}">
+                                                                <Binding Path="Data.Time" />
+                                                                <Binding Path="Now" Source="{StaticResource currentTime}" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                        </TextBlock>
+                                                </DataTemplate>
+                                                <!--<ControlTemplate>
+                                                    <TextBlock>
+                                                        <TextBlock.Text>
+                                                            --><!--<Binding Source="{StaticResource currentTime}" Path="Now" Converter="{StaticResource inspectorConverter}"/>--><!--
+                                                            <Binding Source="{RelativeSource Self}" Converter="{StaticResource inspectorConverter}"/>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </ControlTemplate>-->
+                                                <!--<Binding Source="{RelativeSource Self}" Converter="{StaticResource inspectorConverter}"/>-->
+                                                <!--<Binding RelativeSource="{RelativeSource}" Converter="{StaticResource inspectorConverter}"/>-->
+                                                
+                                            <!--<dxg:GridColumn.Binding>
+                                                <Binding Source="{StaticResource currentTime}" />-->
+                                                <!--<Binding Path="Now" Source="{StaticResource currentTime}" Mode="OneTime" />-->
+                                                <!--<Binding Path="Data.Time" RelativeSource="{RelativeSource Self}"/>-->
+                                                <!--<Binding Path="Now" Source="{StaticResource currentTime}"/>-->
+                                                <!--<MultiBinding Converter="{StaticResource ElapsedTimeMultiConverter}">
+                                                    <Binding Path="Data.Time" RelativeSource="{RelativeSource Self}"/>
+                                                    <Binding Path="Now" Source="{StaticResource currentTime}" />
+                                                </MultiBinding>-->
+                                                <!--<Binding Path="Data.Time" RelativeSource="{RelativeSource Self}"/>
+                                                <MultiBinding Converter="{StaticResource ElapsedTimeMultiConverter}">
+                                                    <Binding Path="Now" Source="{StaticResource currentTime}" />
+                                                    <Binding Path="Now" Source="{StaticResource currentTime}" />
+                                                </MultiBinding>-->
+                                            </dxg:GridColumn.CellTemplate>
+                                        </dxg:GridColumn>
+                                    </dxg:GridControl.Columns>
+                                </dxg:GridControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </dxg:ContentDetailDescriptor.ContentTemplate>
+                </dxg:ContentDetailDescriptor>
+            </dxg:GridControl.DetailDescriptor>
+                <dxg:GridControl.View>
                 <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
             </dxg:GridControl.View>
         </dxg:GridControl>

@@ -62,6 +62,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\ElapsedTimeMultiConverter.cs" />
+    <Compile Include="Converters\InspectorConverter.cs" />
+    <Compile Include="Helpers\CurrentTime.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />

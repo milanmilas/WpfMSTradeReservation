@@ -22,13 +22,6 @@ namespace Client
         public SecuritiesAllocationView()
         {
             InitializeComponent();
-
-            var gridControl = this.securities;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var gridControl = this.securities.VisibleRowCount;
         }
     }
 }

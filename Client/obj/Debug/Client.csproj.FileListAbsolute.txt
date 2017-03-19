@@ -36,7 +36,6 @@ C:\GitHub\WpfMSTradeReservation\Client\bin\Debug\de\DevExpress.Pdf.v16.2.Core.re
 C:\GitHub\WpfMSTradeReservation\Client\bin\Debug\es\DevExpress.Pdf.v16.2.Core.resources.dll
 C:\GitHub\WpfMSTradeReservation\Client\bin\Debug\ja\DevExpress.Pdf.v16.2.Core.resources.dll
 C:\GitHub\WpfMSTradeReservation\Client\bin\Debug\ru\DevExpress.Pdf.v16.2.Core.resources.dll
-C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\App.g.cs
 C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\Client_MarkupCompile.cache
 C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\Client_MarkupCompile.lref
@@ -49,3 +48,4 @@ C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\Client.pdb
 C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\Views\SecuritiesAllocationView.g.cs
 C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\Views\SecuritiesAllocationView.baml
+C:\GitHub\WpfMSTradeReservation\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache

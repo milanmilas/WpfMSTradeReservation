@@ -37,7 +37,7 @@ namespace Client
                     Isin = "goog2017",
                     Name = "Google",
                     Price = 20,
-                    Reservations = new List<Reservation> { new Reservation { TraderName = "Linda", Quantity = 15, Time = DateTime.Now } }
+                    Reservations = new List<Reservation> { new Reservation { TraderName = "Linda", Quantity = 15, Time = DateTime.Now.AddHours(-2) } }
                 }));
 
             TestCommand = new RelayCommand(TestAction);
